@@ -11,9 +11,10 @@ export const resolvers = {
         },
         Cursos(_,args,context) {
             console.log(context);
+            return Curso.find();
+            
             if(context.user.auth){
                 
-                return Curso.find();
 
             }
             else{
