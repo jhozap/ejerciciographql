@@ -11,7 +11,7 @@ export const generarJwt = (uid , nombre) =>{
         jwt.sign(payload, secret, {expiresIn : "2h"}, 
             (err, token) =>{
                 if(err){
-                    console.log(err)
+                    // console.log(err)
                     reject("no se generó el token")
                 }
 

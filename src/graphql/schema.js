@@ -3,22 +3,32 @@ import { resolvers } from "./resolvers";
 
 const typeDefs = `
     type Query {
-        Hola(Nombre : String!): String
-        Cursos : [Curso]
-        Login(email : String! , password : String!) : String
+        usuarios : [Usuario]
+        usuarioById(id: ID!) : Usuario
+        login(email : String! , password : String!) : Auth
     }
 
 
     type Mutation {
-        AgregarCurso(curso : CursoInput): Curso
-        AgregarUsuario(usuario : UsuarioInput) : Usuario
+        crearUsuario(usuario : UsuarioInput): Usuario
+        actualizarUsuario(usuario : UsuarioInput) : Usuario
+        eliminarUsuario(id: ID!) : String 
     }
 
-    type Usuario{
+    type Auth {
+        token: String,
+        usuario: String,
+        rol: String
+    }
+
+    type Usuario {
         id : ID,
         nombre : String,
+        apellido : String,
         email : String,
-        password : String
+        password : String,
+        estado : Boolean,
+        rol: String
     }
 
     type Curso {
@@ -33,20 +43,13 @@ const typeDefs = `
     }
 
     input UsuarioInput{
-        
-        nombre : String,
-        email : String,
-        password : String
-    }
-
-    input CursoInput {
-        nombre: String,
-        lenguajes: [LenguajeInput] ,
-        fecha: String,
-    }
-
-    input LenguajeInput {
-        lenguaje : String
+        id : ID,
+        nombre : String!,
+        apellido : String!,
+        email : String!,
+        password : String!,
+        estado : Boolean,
+        rol: String!
     }
 
 `;
