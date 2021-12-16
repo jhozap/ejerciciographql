@@ -24,10 +24,7 @@ export const resolvers = {
                 email
             })
             .populate('rol')
-            // console.log(usuario)
-            // console.log("args", email, password);
             if(!usuario){
-                // return "Usuario o contraseña incorrecto"
                 throw new Error("Usuario o contraseña incorrecto");
             }
             
