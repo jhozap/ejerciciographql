@@ -19,6 +19,6 @@ dotenv.config()
      }
  })));
 
- app.listen(4000, () => {
-     console.log ("Servidor conectado en el puerto 4000");
+ app.listen(process.env.PORT, () => {
+     console.log (`Servidor conectado en el puerto ${ process.env.PORT }`);
  })
