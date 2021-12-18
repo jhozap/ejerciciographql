@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf build && mkdir build",
     "test": "cross-env NODE_ENV=test jest",
-    "start": "babel-node src/index.js",
-    "dev": "cross-env NODE_ENV=dev nodemon src/index.js --exec babel-node",
-    "build": "babel src -d dist --source-maps"
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/index.js",
+    "dev": "cross-env NODE_ENV=dev nodemon src/index.js --exec babel-node"
   },
   "keywords": [],
   "author": "",
@@ -23,13 +25,14 @@
     "graphql-tools": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.14",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
-    "@babel/core": "^7.16.0",
+    "@babel/core": "^7.16.5",
     "@babel/node": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-env": "^7.16.5",
     "babel-jest": "^27.4.5",
     "babel-polyfill": "^6.26.0",
     "jest": "^27.4.5"
