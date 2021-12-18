@@ -1,11 +1,18 @@
 import mongoose from "mongoose";
-export const dbConnection = async () =>{
+
+
+
+export const dbConnection = async () => {
+    const { MONGO_DB, MONGO_DB_TEST, NODE_ENV } = process.env;
+
+    const connectionString = NODE_ENV === 'test' ? MONGO_DB_TEST : MONGO_DB
+    // console.log(connectionString);
     try {
-        await mongoose.connect("mongodb+srv://Prueba:yWQx7KGHM6YsSGmy@ventas-c3.s2ski.mongodb.net/gpl-proyectos");
+        await mongoose.connect(connectionString);
         console.log("base conectada")
-        
+
     } catch (error) {
         console.log(error)
-        
+
     }
 }

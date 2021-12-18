@@ -4,6 +4,8 @@ import schema from "./graphql/schema";
 import {dbConnection}  from "./database/config";
 import { validarJwt } from "./middleware/validar-jwt";
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config()
 
  const app = express();
  dbConnection();
@@ -17,6 +19,6 @@ import cors from 'cors';
      }
  })));
 
- app.listen(4000, () => {
-     console.log ("Servidor conectado en el puerto 4000");
+ app.listen(process.env.PORT, () => {
+     console.log (`Servidor conectado en el puerto ${ process.env.PORT }`);
  })
